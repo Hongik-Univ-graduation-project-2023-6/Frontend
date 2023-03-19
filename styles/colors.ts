@@ -1,0 +1,10 @@
+export const colors = {
+  white: '#ffffff',
+  black: '#000000',
+  grayline1: '#707070',
+  grayline2: '#eaeaea',
+  graytext1: '#808080',
+  graytext2: '#b4b4b4',
+  graytext3: '#909090',
+  greenbox1: '#f0f2eb',
+};
