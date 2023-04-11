@@ -68,7 +68,7 @@ const layout = css`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 6rem 1rem;
+  padding: 3rem 1rem;
 `;
 
 const topArea = css`

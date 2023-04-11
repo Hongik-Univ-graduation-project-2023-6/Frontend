@@ -89,7 +89,7 @@ const DiagnosisPage = () => {
 const layout = css`
   display: flex;
   flex-direction: column;
-  padding: 6rem 1rem;
+  padding: 3rem 1rem;
   gap: 2rem;
 `;
 

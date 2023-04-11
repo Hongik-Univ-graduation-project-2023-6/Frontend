@@ -52,14 +52,14 @@ const wrapper = css`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 6rem;
-  padding: 3.5rem 1rem 0.75rem;
+  height: 3rem;
+  padding: 0.75rem 1rem;
   background-color: ${colors.white};
   z-index: 900;
 
   & > svg:nth-of-type(2) {
     position: absolute;
-    top: 3.5rem;
+    top: 0.75rem;
     left: 50%;
     transform: translateX(-50%);
   }

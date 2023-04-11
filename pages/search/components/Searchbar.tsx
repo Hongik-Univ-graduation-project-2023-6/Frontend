@@ -32,8 +32,8 @@ const wrapper = css`
   align-items: center;
   gap: 0.5rem;
   width: 100%;
-  height: 6rem;
-  padding: 3.5rem 1rem 0.75rem;
+  height: 3rem;
+  padding: 0.75rem 1rem;
   background-color: ${colors.white};
   z-index: 900;
 
