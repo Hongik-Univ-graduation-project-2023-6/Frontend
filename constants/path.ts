@@ -5,4 +5,5 @@ export const PATH = {
   LOGIN: '/login',
   DIAGNOSIS: '/diagnosis',
   DIAGNOSIS_RESULT: '/diagnosis/result',
+  SEARCH: '/search',
 };
