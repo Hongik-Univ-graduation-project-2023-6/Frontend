@@ -11,7 +11,7 @@
     "plugin:import/recommended",
     "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
-    "pretter"
+    "prettier"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
@@ -23,5 +23,16 @@
     }
   },
   "plugins": ["react", "react-hooks", "import", "@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
 }
