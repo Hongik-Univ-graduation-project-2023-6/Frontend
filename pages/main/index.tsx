@@ -1,12 +1,11 @@
-// import Button from 'Components/Button';
-import Header from '@/components/Header';
 import { css } from '@emotion/react';
+import { useRouter } from 'next/router';
+import Button from '@/components/Button';
+import Header from '@/components/Header';
+import { PATH } from '@/constants/path';
+import Pencil from '@/public/assets/svg/pencil.svg';
 import DiagnosisButton from './components/DiagnosisButton';
 import Post from './components/Post';
-import Pencil from '@/public/assets/svg/pencil.svg';
-import { useRouter } from 'next/router';
-import { PATH } from '@/constants/path';
-import Button from '@/components/Button';
 
 const DATA = [
   {

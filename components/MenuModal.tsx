@@ -1,11 +1,11 @@
-import ModalPortal from '@/ModalPortal';
-import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
-import BigLogo from '@/public/assets/svg/big_logo.svg';
-import X from '@/public/assets/svg/x.svg';
-import Text from './Text';
 import { useRouter } from 'next/router';
 import { PATH } from '@/constants/path';
+import ModalPortal from '@/ModalPortal';
+import BigLogo from '@/public/assets/svg/big_logo.svg';
+import X from '@/public/assets/svg/x.svg';
+import { colors } from '@/styles/colors';
+import Text from './Text';
 
 interface Props {
   showModal: boolean;

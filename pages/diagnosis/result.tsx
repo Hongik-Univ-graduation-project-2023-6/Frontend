@@ -1,5 +1,5 @@
-import Header from '@/components/Header';
 import { css } from '@emotion/react';
+import Header from '@/components/Header';
 
 const IndexPage = () => {
   return (

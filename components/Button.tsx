@@ -1,5 +1,5 @@
-import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
+import { colors } from '@/styles/colors';
 import Text from './Text';
 
 /**

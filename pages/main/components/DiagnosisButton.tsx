@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import leaves from '../../../public/assets/img/leaves.webp';
-import { colors } from '@/styles/colors';
-import Text from '@/components/Text';
 import { useRouter } from 'next/router';
+import Text from '@/components/Text';
 import { PATH } from '@/constants/path';
+import { colors } from '@/styles/colors';
+import leaves from '../../../public/assets/img/leaves.webp';
 
 const DiagnosisButton = () => {
   const router = useRouter();

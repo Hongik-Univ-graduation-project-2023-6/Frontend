@@ -1,13 +1,13 @@
 import { css } from '@emotion/react';
-import Menu from '@/public/assets/svg/menu.svg';
-import Logo from '@/public/assets/svg/logo.svg';
-import Search from '@/public/assets/svg/search.svg';
-import LeftArrow from '@/public/assets/svg/left_arrow.svg';
-import { colors } from '@/styles/colors';
 import { useRouter } from 'next/router';
-import { PATH } from '@/constants/path';
-import MenuModal from './MenuModal';
 import { useState } from 'react';
+import { PATH } from '@/constants/path';
+import LeftArrow from '@/public/assets/svg/left_arrow.svg';
+import Logo from '@/public/assets/svg/logo.svg';
+import Menu from '@/public/assets/svg/menu.svg';
+import Search from '@/public/assets/svg/search.svg';
+import { colors } from '@/styles/colors';
+import MenuModal from './MenuModal';
 
 interface Props {
   showPrevButton?: boolean;

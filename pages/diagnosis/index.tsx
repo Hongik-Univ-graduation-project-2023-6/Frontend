@@ -1,14 +1,14 @@
 import { css } from '@emotion/react';
-import leaf from 'public/assets/img/leaf.webp';
 import Image from 'next/image';
-import Text from '@/components/Text';
-import Header from '@/components/Header';
-import { colors } from '@/styles/colors';
-import Button from '@/components/Button';
-import Picture from '@/public/assets/svg/picture.svg';
-import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useRef, useState } from 'react';
+import leaf from 'public/assets/img/leaf.webp';
+import Button from '@/components/Button';
+import Header from '@/components/Header';
+import Text from '@/components/Text';
 import { PATH } from '@/constants/path';
+import Picture from '@/public/assets/svg/picture.svg';
+import { colors } from '@/styles/colors';
 
 const DiagnosisPage = () => {
   const [thumbnailSrc, setThumbnailSrc] = useState<string | null>(null);
