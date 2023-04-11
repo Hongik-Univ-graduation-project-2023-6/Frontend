@@ -1,7 +1,6 @@
 import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
 import Text from './Text';
-// import Text from './Text';
 
 /**
  * @description
@@ -10,7 +9,7 @@ import Text from './Text';
 
 interface Props {
   text: string;
-  children?: any;
+  children?: React.ReactNode;
   onClick: () => void;
 }
 
