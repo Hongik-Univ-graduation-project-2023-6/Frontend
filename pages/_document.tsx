@@ -8,6 +8,7 @@ const Document = () => {
       <meta charSet="utf-8"></meta>
       <body>
         <Main />
+        <div id="modal-root" />
         <NextScript />
       </body>
     </Html>
