@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import leaves from '../../../public/assets/img/leaves.webp';
 import { colors } from '@/styles/colors';
-import Text from '@/Components/Text';
+import Text from '@/components/Text';
 import { useRouter } from 'next/router';
 import { PATH } from '@/constants/path';
 

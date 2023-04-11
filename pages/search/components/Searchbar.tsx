@@ -1,4 +1,4 @@
-import Text from '@/Components/Text';
+import Text from '@/components/Text';
 import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
 import Search from '@/public/assets/svg/search.svg';

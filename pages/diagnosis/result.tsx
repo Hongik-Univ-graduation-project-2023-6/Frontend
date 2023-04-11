@@ -1,6 +1,5 @@
-import Header from '@/Components/Header';
+import Header from '@/components/Header';
 import { css } from '@emotion/react';
-import { Fragment } from 'react';
 
 const IndexPage = () => {
   return (

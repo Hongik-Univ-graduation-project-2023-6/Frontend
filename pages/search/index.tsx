@@ -1,6 +1,6 @@
 import Searchbar from './components/Searchbar';
 import BigSearch from '@/public/assets/svg/big_search.svg';
-import Text from '@/Components/Text';
+import Text from '@/components/Text';
 import { css } from '@emotion/react';
 import { colors } from '@/styles/colors';
 

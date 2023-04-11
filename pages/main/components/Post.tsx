@@ -1,4 +1,4 @@
-import Text from '@/Components/Text';
+// import Text from '@/Components/Text';
 import { PATH } from '@/constants/path';
 import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Like from '../../../public/assets/svg/like.svg';
 import Scrape from '../../../public/assets/svg/scrape.svg';
+import Text from '@/components/Text';
 
 interface Props {
   id: string;
@@ -30,10 +31,10 @@ const Post = ({
   images,
 }: Props) => {
   const imageClass = classNames({
-    more: images.length > 2,
-    double: images.length === 2,
-    single: images.length === 1,
-    none: images.length === 0,
+    more: images?.length > 2,
+    double: images?.length === 2,
+    single: images?.length === 1,
+    none: images?.length === 0,
   });
 
   const router = useRouter();

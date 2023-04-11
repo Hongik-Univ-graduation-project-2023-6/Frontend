@@ -1,5 +1,5 @@
-import Header from '@/Components/Header';
-import Text from '@/Components/Text';
+import Header from '@/components/Header';
+import Text from '@/components/Text';
 import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
 import Profile from '@/public/assets/svg/profile.svg';

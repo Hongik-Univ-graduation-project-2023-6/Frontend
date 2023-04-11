@@ -1,16 +1,12 @@
 import { css } from '@emotion/react';
-import leaf from '@/public/assets/img/leaf.webp';
+import leaf from 'public/assets/img/leaf.webp';
 import Image from 'next/image';
-import Text from '@/Components/Text';
-import Header from '@/Components/Header';
+import Text from '@/components/Text';
+import Header from '@/components/Header';
 import { colors } from '@/styles/colors';
-import Button from '@/Components/Button';
-import Camera from '@/public/assets/svg/camera.svg';
+import Button from '@/components/Button';
 import Picture from '@/public/assets/svg/picture.svg';
-import Search from '@/public/assets/svg/search.svg';
-
 import { useRef, useState } from 'react';
-import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { PATH } from '@/constants/path';
 
