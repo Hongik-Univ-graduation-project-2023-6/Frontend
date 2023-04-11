@@ -7,4 +7,6 @@ export const colors = {
   graytext2: '#b4b4b4',
   graytext3: '#909090',
   greenbox1: '#f0f2eb',
+  greenbox2: '#eceee5',
+  greenbox3: '#cfd5bf',
 };
