@@ -1,7 +1,11 @@
+import Button from '@/Components/Button';
 import Header from '@/Components/Header';
 import { css } from '@emotion/react';
 import DiagnosisButton from './components/DiagnosisButton';
 import Post from './components/Post';
+import Pencil from '@/public/assets/svg/pencil.svg';
+import { useRouter } from 'next/router';
+import { PATH } from '@/constants/path';
 
 const DATA = [
   {
@@ -55,13 +59,20 @@ const DATA = [
 ];
 
 const MainPage = () => {
+  const router = useRouter();
+
+  const handleWriteButtonClick = () => {
+    // router.push(PATH.WRITE);
+  };
+
   return (
     <div css={layout}>
-      <Header />
-      <DiagnosisButton onClick={() => null} />
+      <Header showSearchButton={true} />
+      <DiagnosisButton />
       {DATA.map((post) => (
         <Post
           key={post.id}
+          id={post.id}
           userName={post.userName}
           date={post.date}
           title={post.title}
@@ -71,15 +82,31 @@ const MainPage = () => {
           images={post.images}
         />
       ))}
+      <div css={buttonArea}>
+        <Button text="글쓰기" onClick={handleWriteButtonClick}>
+          <Pencil />
+        </Button>
+      </div>
     </div>
   );
 };
 
 const layout = css`
+  position: relative;
   display: flex;
   flex-direction: column;
-
   padding: 6rem 1rem;
+`;
+
+const buttonArea = css`
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+
+  button {
+    border-radius: 1.5rem;
+  }
 `;
 
 export default MainPage;
