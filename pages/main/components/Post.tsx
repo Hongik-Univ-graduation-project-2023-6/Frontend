@@ -1,12 +1,15 @@
 import Text from '@/Components/Text';
+import { PATH } from '@/constants/path';
 import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
 import classNames from 'classnames';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Like from '../../../public/assets/svg/like.svg';
 import Scrape from '../../../public/assets/svg/scrape.svg';
 
 interface Props {
+  id: string;
   userName: string;
   date: string;
   title: string;
@@ -17,6 +20,7 @@ interface Props {
 }
 
 const Post = ({
+  id,
   userName,
   date,
   title,
@@ -32,8 +36,14 @@ const Post = ({
     none: images.length === 0,
   });
 
+  const router = useRouter();
+
+  const handlePostClick = (id: string) => {
+    router.push(`${PATH.VIEW}/${id}`);
+  };
+
   return (
-    <div css={wrapper}>
+    <div css={wrapper} onClick={() => handlePostClick(id)}>
       <div css={topArea}>
         <Text size="md" weight="regular">
           {userName}
@@ -54,7 +64,12 @@ const Post = ({
       {(imageClass === 'more' || imageClass === 'double') && (
         <div className={imageClass} css={imageArea}>
           <div>
-            <Image src={images[0]} alt="uploaded image" fill={true} />
+            <Image
+              src={images[0]}
+              alt="uploaded image"
+              fill={true}
+              sizes="50%"
+            />
           </div>
           <div className={imageClass === 'more' ? 'seeMore' : ''}>
             {imageClass === 'more' && (
@@ -62,7 +77,12 @@ const Post = ({
                 이미지 더 보기
               </Text>
             )}
-            <Image src={images[1]} alt="uploaded image" fill={true} />
+            <Image
+              src={images[1]}
+              alt="uploaded image"
+              fill={true}
+              sizes="50%"
+            />
           </div>
         </div>
       )}
@@ -70,7 +90,13 @@ const Post = ({
       {imageClass === 'single' && (
         <div className={imageClass} css={imageArea}>
           <div>
-            <Image src={images[0]} alt="uploaded image" fill={true} />
+            <Image
+              src={images[0]}
+              alt="uploaded image"
+              fill={true}
+              sizes="100%"
+              priority={true}
+            />
           </div>
         </div>
       )}
@@ -99,6 +125,7 @@ const wrapper = css`
   width: 100%;
   padding: 0.75rem 1.5rem 1.5rem;
   border-bottom: 1px solid ${colors.grayline1};
+  z-index: 0;
 `;
 
 const topArea = css`
