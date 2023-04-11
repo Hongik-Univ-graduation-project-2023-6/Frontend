@@ -13,8 +13,8 @@ interface Props {
 }
 
 const MenuModal = ({ showModal, setShowModal }: Props) => {
-  if (!showModal) return null;
   const router = useRouter();
+  if (!showModal) return null;
 
   const handleBackgroundClick = () => {
     setShowModal(false);
