@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { HEADER_HEIGHT } from '@/constants/layout';
 import { PATH } from '@/constants/path';
 import LeftArrow from '@/public/assets/svg/left_arrow.svg';
 import Logo from '@/public/assets/svg/logo.svg';
@@ -12,35 +13,38 @@ import MenuModal from './MenuModal';
 interface Props {
   showPrevButton?: boolean;
   showSearchButton?: boolean;
+  showMenuButton?: boolean;
 }
 
-const Header = ({ showPrevButton, showSearchButton }: Props) => {
+const Header = ({
+  showPrevButton,
+  showSearchButton,
+  showMenuButton,
+}: Props) => {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
-  const handlePrevButtonClick = () => {
-    router.back();
+  const handleLeftSideButtonClick = () => {
+    showPrevButton && router.back();
+    showMenuButton && setShowModal(true);
   };
 
-  const handleSearchButtonClick = () => {
-    router.push(PATH.SEARCH);
-  };
-
-  const handleMenuButtonClick = () => {
-    setShowModal(true);
+  const handleRightSideButtonClick = () => {
+    showSearchButton && router.push(PATH.SEARCH);
   };
 
   return (
-    <div css={wrapper}>
+    <header css={wrapper}>
       <MenuModal showModal={showModal} setShowModal={setShowModal} />
-      {showPrevButton ? (
-        <LeftArrow onClick={handlePrevButtonClick} />
-      ) : (
-        <Menu onClick={handleMenuButtonClick} />
-      )}
-      <Logo />
-      {showSearchButton && <Search onClick={handleSearchButtonClick} />}
-    </div>
+      <div onClick={handleLeftSideButtonClick}>
+        {showPrevButton && <LeftArrow />}
+        {showMenuButton && <Menu />}
+      </div>
+      <Logo className="logo" />
+      <div onClick={handleRightSideButtonClick}>
+        {showSearchButton && <Search />}
+      </div>
+    </header>
   );
 };
 
@@ -52,12 +56,19 @@ const wrapper = css`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 3rem;
-  padding: 0.75rem 1rem;
+  height: ${HEADER_HEIGHT};
   background-color: ${colors.white};
   z-index: 900;
 
-  & > svg:nth-of-type(2) {
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: ${HEADER_HEIGHT};
+    height: ${HEADER_HEIGHT};
+  }
+
+  & > svg.logo {
     position: absolute;
     top: 0.75rem;
     left: 50%;
