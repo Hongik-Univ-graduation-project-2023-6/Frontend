@@ -1,28 +1,34 @@
-import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
+import { ReactElement } from 'react';
+import { colors } from '@/styles/colors';
 import Text from './Text';
 
-/**
- * @description
- * children 속성을 통해 버튼 내 svg 파일을 출력할 수 있습니다.
- */
+type ButtonType = 'submit' | 'button';
 
 interface Props {
-  text: string;
-  children?: React.ReactNode;
-  onClick: () => void;
+  type: ButtonType;
+  label: string;
+  icon?: ReactElement;
+  onClick?: () => void;
 }
 
-const Button = ({ text, children, onClick }: Props) => {
-  const handleClick = () => {
-    onClick();
+/**
+ * @param type 버튼의 타입입니다. submit과 button 중에서 선택 가능합니다.
+ * @param label 버튼에 표시될 label text 입니다.
+ * @param icon 버튼에 표시될 아이콘 이미지 입니다. react element가 들어와야 됩니다.
+ * @param onClick 버튼이 클릭되었을 때 발생할 이벤트입니다.
+ */
+
+const Button = ({ type, label, icon, onClick }: Props) => {
+  const handleButtonClick = () => {
+    onClick && onClick();
   };
 
   return (
-    <button css={wrapper} onClick={handleClick}>
-      {children && <div>{children}</div>}
+    <button type={type} css={wrapper} onClick={handleButtonClick}>
+      <div>{icon}</div>
       <Text weight="bold" size="sm">
-        {text}
+        {label}
       </Text>
     </button>
   );

@@ -1,8 +1,8 @@
-import Text from '@/components/Text';
-import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
-import Search from '@/public/assets/svg/search.svg';
 import { useRouter } from 'next/router';
+import Text from '@/components/Text';
+import Search from '@/public/assets/svg/search.svg';
+import { colors } from '@/styles/colors';
 
 const Searchbar = () => {
   const router = useRouter();

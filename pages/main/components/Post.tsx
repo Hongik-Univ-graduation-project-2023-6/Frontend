@@ -1,13 +1,12 @@
-// import Text from '@/Components/Text';
-import { PATH } from '@/constants/path';
-import { colors } from '@/styles/colors';
 import { css } from '@emotion/react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Text from '@/components/Text';
+import { PATH } from '@/constants/path';
+import { colors } from '@/styles/colors';
 import Like from '../../../public/assets/svg/like.svg';
 import Scrape from '../../../public/assets/svg/scrape.svg';
-import Text from '@/components/Text';
 
 interface Props {
   id: string;

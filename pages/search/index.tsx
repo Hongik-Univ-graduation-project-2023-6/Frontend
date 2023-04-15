@@ -1,8 +1,8 @@
-import Searchbar from './components/Searchbar';
-import BigSearch from '@/public/assets/svg/big_search.svg';
-import Text from '@/components/Text';
 import { css } from '@emotion/react';
+import Text from '@/components/Text';
+import BigSearch from '@/public/assets/svg/big_search.svg';
 import { colors } from '@/styles/colors';
+import Searchbar from './components/Searchbar';
 
 const SearchPage = () => {
   return (
