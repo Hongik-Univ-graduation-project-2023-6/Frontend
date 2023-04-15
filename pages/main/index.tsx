@@ -1,10 +1,15 @@
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
+import BottomNaviagtion from '@/components/BottomNavigation';
 import Button from '@/components/Button';
 import Header from '@/components/Header';
+import {
+  BOTTOM_NAVIGATION_HEIGHT,
+  HEADER_HEIGHT,
+  SIDE_PADDING,
+} from '@/constants/layout';
 import { PATH } from '@/constants/path';
 import Pencil from '@/public/assets/svg/pencil.svg';
-import DiagnosisButton from './components/DiagnosisButton';
 import Post from './components/Post';
 
 const DATA = [
@@ -68,7 +73,6 @@ const MainPage = () => {
   return (
     <div css={layout}>
       <Header showSearchButton={true} />
-      <DiagnosisButton />
       {DATA.map((post) => (
         <Post
           key={post.id}
@@ -82,29 +86,28 @@ const MainPage = () => {
           images={post.images}
         />
       ))}
-      <div css={buttonArea}>
-        <Button text="글쓰기" onClick={handleWriteButtonClick}>
-          <Pencil />
-        </Button>
-      </div>
+      <Button
+        type="button"
+        label="글쓰기"
+        onClick={handleWriteButtonClick}
+        icon={<Pencil />}
+      />
+      <BottomNaviagtion />
     </div>
   );
 };
 
 const layout = css`
-  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 3rem 1rem;
-`;
+  padding: ${HEADER_HEIGHT} ${SIDE_PADDING}
+    calc(${BOTTOM_NAVIGATION_HEIGHT} + 1rem);
 
-const buttonArea = css`
-  position: fixed;
-  left: 50%;
-  bottom: 1rem;
-  transform: translateX(-50%);
-
-  button {
+  & > button {
+    position: fixed;
+    left: 50%;
+    bottom: calc(${BOTTOM_NAVIGATION_HEIGHT} + 0.75rem);
+    transform: translateX(-50%);
     border-radius: 1.5rem;
   }
 `;
