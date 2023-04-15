@@ -1,8 +1,10 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import { aiRequest } from '@/api/axios';
 import Button from '@/components/Button';
+import { PATH } from '@/constants/path';
 import Picture from '@/public/assets/svg/picture.svg';
 import Search from '@/public/assets/svg/search.svg';
 
@@ -11,28 +13,30 @@ const ImageFileForm = () => {
   const [thumbnailSrc, setThumbnailSrc] = useState<string | null>(null);
   //임시
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!imageFile) return;
 
-    const formdata = new FormData();
-    formdata.append('image', imageFile);
-    console.log(process.env.NEXT_PUBLIC_AI_SERVER_URL);
-    try {
-      const response = await aiRequest({
-        method: 'post',
-        url: '/inference/',
-        data: formdata,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+    router.push(PATH.DIAGNOSIS_RESULT);
+    // const formdata = new FormData();
+    // formdata.append('image', imageFile);
+    // console.log(process.env.NEXT_PUBLIC_AI_SERVER_URL);
+    // try {
+    //   const response = await aiRequest({
+    //     method: 'post',
+    //     url: '/inference/',
+    //     data: formdata,
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   });
 
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
+    //   console.log(response);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const fileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
