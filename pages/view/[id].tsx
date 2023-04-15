@@ -1,11 +1,11 @@
+import { css } from '@emotion/react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import { colors } from '@/styles/colors';
-import { css } from '@emotion/react';
-import Profile from '@/public/assets/svg/profile.svg';
 import Like from '@/public/assets/svg/like.svg';
+import Profile from '@/public/assets/svg/profile.svg';
 import Scrape from '@/public/assets/svg/scrape.svg';
-import Image from 'next/image';
+import { colors } from '@/styles/colors';
 
 const DATA = {
   id: '1',
