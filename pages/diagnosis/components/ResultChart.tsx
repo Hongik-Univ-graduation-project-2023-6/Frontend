@@ -46,6 +46,7 @@ const ResultChart = ({ data }: Props) => {
       .attr('width', 0)
       .attr('height', yScale.bandwidth())
       .attr('fill', `${colors.greenbox3}`)
+      .attr('stroke', `${colors.graytext2}`)
       .attr('ry', 5)
       .transition()
       .duration(ANIMATION_DURATION)
@@ -71,9 +72,7 @@ const ResultChart = ({ data }: Props) => {
       .tween('text', function (item: IDiagnosisResponse) {
         const interpolate = d3.interpolate(0, item.percentage);
         return (time) => {
-          d3.select(this).text(
-            `${item.name} ${Math.round(interpolate(time))}%`,
-          );
+          d3.select(this).text(`${item.name} ${interpolate(time).toFixed(1)}%`);
         };
       });
   }, [data, margin.top, margin.bottom, margin.left, margin.right]);
