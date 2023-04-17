@@ -11,7 +11,6 @@ const BottomNaviagtion = () => {
   const router = useRouter();
 
   const handleLeftSideButtonClick = () => {
-    console.log('ss');
     router.push(PATH.DIAGNOSIS);
   };
 
