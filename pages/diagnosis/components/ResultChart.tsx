@@ -45,7 +45,9 @@ const ResultChart = ({ data }: Props) => {
       .attr('y', (item) => yScale(item.name)!)
       .attr('width', 0)
       .attr('height', yScale.bandwidth())
-      .attr('fill', `${colors.greenbox3}`)
+      .attr('fill', (_, index) =>
+        index === 0 ? `${colors.greenbox3}` : `${colors.greenbox1}`,
+      )
       .attr('stroke', `${colors.graytext2}`)
       .attr('ry', 5)
       .transition()
