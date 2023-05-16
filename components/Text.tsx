@@ -2,7 +2,7 @@ import { fontSize, fontWeight } from '@/constants/fonts';
 import { fontSizeType, fontWeightType } from '@/types/fonts';
 
 interface Props {
-  children: string | number;
+  children: React.ReactNode;
   weight: fontWeightType;
   size: fontSizeType;
   onClick?: () => void;
