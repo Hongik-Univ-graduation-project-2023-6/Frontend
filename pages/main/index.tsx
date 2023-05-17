@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import BottomNaviagtion from '@/components/BottomNavigation';
 import Button from '@/components/Button';
 import Header from '@/components/Header';
@@ -8,7 +8,7 @@ import {
   HEADER_HEIGHT,
   SIDE_PADDING,
 } from '@/constants/layout';
-// import { PATH } from '@/constants/path';
+import { PATH } from '@/constants/path';
 import LeafSample1 from '@/public/assets/img/leaf2.jpg';
 import LeafSample2 from '@/public/assets/img/leaf3.jpg';
 import LeafSample3 from '@/public/assets/img/leaves.webp';
@@ -60,9 +60,10 @@ const DATA = [
 ];
 
 const MainPage = () => {
-  // const router = useRouter();
+  const router = useRouter();
+
   const handleWriteButtonClick = () => {
-    // router.push(PATH.WRITE);
+    router.push(PATH.WRITE);
   };
 
   return (
