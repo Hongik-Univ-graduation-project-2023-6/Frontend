@@ -26,8 +26,8 @@ const Button = ({ type, label, icon, onClick }: Props) => {
 
   return (
     <button type={type} css={wrapper} onClick={handleButtonClick}>
-      <div>{icon}</div>
-      <Text weight="bold" size="sm">
+      {icon && <div>{icon}</div>}
+      <Text weight="bold" size="md">
         {label}
       </Text>
     </button>
