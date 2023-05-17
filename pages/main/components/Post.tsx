@@ -4,9 +4,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Text from '@/components/Text';
 import { PATH } from '@/constants/path';
+import Comment from '@/public/assets/svg/comment.svg';
 import { colors } from '@/styles/colors';
-import Like from '../../../public/assets/svg/like.svg';
-import Scrape from '../../../public/assets/svg/scrape.svg';
 
 interface Props {
   id: string;
@@ -14,8 +13,7 @@ interface Props {
   date: string;
   title: string;
   content: string;
-  like: number;
-  scrape: number;
+  commentCount: number;
   images: string[];
 }
 
@@ -25,8 +23,7 @@ const Post = ({
   date,
   title,
   content,
-  like,
-  scrape,
+  commentCount,
   images,
 }: Props) => {
   const imageClass = classNames({
@@ -46,17 +43,17 @@ const Post = ({
     <div css={wrapper} onClick={() => handlePostClick(id)}>
       <div css={topArea}>
         <Text size="md" weight="regular">
-          {userName}
+          @{userName}
         </Text>
         <Text size="xs" weight="regular">
           {date}
         </Text>
       </div>
       <div css={contentArea}>
-        <Text size="md" weight="bold">
+        <Text size="lg" weight="bold">
           {title}
         </Text>
-        <Text size="sm" weight="regular">
+        <Text size="md" weight="regular">
           {content}
         </Text>
       </div>
@@ -69,6 +66,7 @@ const Post = ({
               alt="uploaded image"
               fill={true}
               sizes="50%"
+              priority={false}
             />
           </div>
           <div className={imageClass === 'more' ? 'seeMore' : ''}>
@@ -82,6 +80,7 @@ const Post = ({
               alt="uploaded image"
               fill={true}
               sizes="50%"
+              priority={false}
             />
           </div>
         </div>
@@ -95,7 +94,7 @@ const Post = ({
               alt="uploaded image"
               fill={true}
               sizes="100%"
-              priority={true}
+              priority={false}
             />
           </div>
         </div>
@@ -103,15 +102,9 @@ const Post = ({
 
       <div css={bottomArea}>
         <div className="bottomIcon">
-          <Like />
-          <Text size="xs" weight="bold">
-            {like}
-          </Text>
-        </div>
-        <div className="bottomIcon">
-          <Scrape />
-          <Text size="xs" weight="bold">
-            {scrape}
+          <Comment />
+          <Text size="md" weight="bold">
+            {commentCount}
           </Text>
         </div>
       </div>
@@ -165,7 +158,7 @@ const contentArea = css`
 
 const bottomArea = css`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 1.5rem;
   color: ${colors.graytext2};
 
@@ -173,6 +166,11 @@ const bottomArea = css`
     display: flex;
     align-items: center;
     gap: 0.25rem;
+
+    svg {
+      /* width: 0.75rem; */
+      /* height: 0.75rem; */
+    }
   }
 `;
 

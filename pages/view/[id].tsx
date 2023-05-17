@@ -2,9 +2,8 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Text from '@/components/Text';
-import Like from '@/public/assets/svg/like.svg';
+import Comment from '@/public/assets/svg/comment.svg';
 import Profile from '@/public/assets/svg/profile.svg';
-import Scrape from '@/public/assets/svg/scrape.svg';
 import { colors } from '@/styles/colors';
 
 const DATA = {
@@ -48,13 +47,7 @@ const ViewPage = () => {
       )}
       <div css={bottomArea}>
         <div className="bottomIcon">
-          <Like />
-          <Text weight="bold" size="xs">
-            {DATA.like}
-          </Text>
-        </div>
-        <div className="bottomIcon">
-          <Scrape />
+          <Comment />
           <Text weight="bold" size="xs">
             {DATA.scrape}
           </Text>

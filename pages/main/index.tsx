@@ -9,6 +9,9 @@ import {
   SIDE_PADDING,
 } from '@/constants/layout';
 import { PATH } from '@/constants/path';
+import LeafSample1 from '@/public/assets/img/leaf2.jpg';
+import LeafSample2 from '@/public/assets/img/leaf3.jpg';
+import LeafSample3 from '@/public/assets/img/leaves.webp';
 import Pencil from '@/public/assets/svg/pencil.svg';
 import Post from './components/Post';
 
@@ -20,24 +23,20 @@ const DATA = [
     title: '안녕하세요',
     content: 'fasdfasfsdafsdafasdfsadfsafsdaf',
     like: 4,
-    scrape: 2,
-    images: ['https://picsum.photos/seed/1000/500/500'],
+    commentCount: 1,
+    images: [LeafSample1],
   },
-  {
-    id: '2',
-    userName: '익명',
-    date: '01/01',
-    title: '안녕하세요fdasfdasfasf',
-    content:
-      'fasdfasfsdafsdafasdfsfasdfasfsdafsdafasdffasdfasfsdafsdafasdfsfsdfdafsafadfsafsdafsfsdfdafsafadfsafsdaffasdfasfsdafsdafasdfsfsdfdafsafadfsafsdaffasdfasfsdafsdafasdfsfsdfdafsafadfsafsdaffsdfdafsafadfsafsdaf',
-    like: 4,
-    scrape: 2,
-    images: [
-      'https://picsum.photos/seed/100/500/500',
-      'https://picsum.photos/seed/400/500/500',
-      'https://picsum.photos/seed/600/500/500',
-    ],
-  },
+  // {
+  //   id: '2',
+  //   userName: '익명',
+  //   date: '01/01',
+  //   title: '안녕하세요fdasfdasfasf',
+  //   content:
+  //     'fasdfasfsdafsdafasdfsfasdfasfsdafsdafasdffasdfasfsdafsdafasdfsfsdfdafsafadfsafsdafsfsdfdafsafadfsafsdaffasdfasfsdafsdafasdfsfsdfdafsafadfsafsdaffasdfasfsdafsdafasdfsfsdfdafsafadfsafsdaffsdfdafsafadfsafsdaf',
+  //   like: 4,
+  //   scrape: 2,
+  //   images: [LeafSample1, LeafSample2, LeafSample3],
+  // },
   {
     id: '3',
     userName: '익명',
@@ -45,11 +44,8 @@ const DATA = [
     title: '안녕하세요',
     content: 'fasdfasfsdafsdafasdfsadfsafsdaf',
     like: 4,
-    scrape: 2,
-    images: [
-      'https://picsum.photos/seed/600/500/500',
-      'https://picsum.photos/seed/900/500/500',
-    ],
+    commentCount: 2,
+    images: [LeafSample2, LeafSample3],
   },
   {
     id: '4',
@@ -58,7 +54,7 @@ const DATA = [
     title: '안녕하세요',
     content: 'fasdfasfsdafsdafasdfsadfsafsdaf',
     like: 4,
-    scrape: 2,
+    commentCount: 4,
     images: [],
   },
 ];
@@ -67,7 +63,7 @@ const MainPage = () => {
   const router = useRouter();
 
   const handleWriteButtonClick = () => {
-    // router.push(PATH.WRITE);
+    router.push(PATH.WRITE);
   };
 
   return (
@@ -81,8 +77,7 @@ const MainPage = () => {
           date={post.date}
           title={post.title}
           content={post.content}
-          like={post.like}
-          scrape={post.scrape}
+          commentCount={post.commentCount}
           images={post.images}
         />
       ))}

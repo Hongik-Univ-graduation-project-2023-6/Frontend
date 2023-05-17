@@ -59,6 +59,7 @@ export const reset = css`
       format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
   }
 
   body,
