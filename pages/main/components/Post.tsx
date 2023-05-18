@@ -1,20 +1,22 @@
 import { css } from '@emotion/react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Text from '@/components/Text';
 import { PATH } from '@/constants/path';
 import Comment from '@/public/assets/svg/comment.svg';
 import { colors } from '@/styles/colors';
+import { IImage } from '@/types/board';
 
 interface Props {
-  id: string;
+  id: number;
   userName: string;
-  date: string;
+  date: Date;
   title: string;
   content: string;
   commentCount: number;
-  images: string[];
+  images: IImage[];
 }
 
 const Post = ({
@@ -40,13 +42,13 @@ const Post = ({
   };
 
   return (
-    <div css={wrapper} onClick={() => handlePostClick(id)}>
+    <div css={wrapper} onClick={() => handlePostClick(id.toString())}>
       <div css={topArea}>
         <Text size="md" weight="regular">
           @{userName}
         </Text>
         <Text size="xs" weight="regular">
-          {date}
+          {dayjs(date).format('MM/DD')}
         </Text>
       </div>
       <div css={contentArea}>
@@ -62,7 +64,7 @@ const Post = ({
         <div className={imageClass} css={imageArea}>
           <div>
             <Image
-              src={images[0]}
+              src={images[0].image_file}
               alt="uploaded image"
               fill={true}
               sizes="50%"
@@ -76,7 +78,7 @@ const Post = ({
               </Text>
             )}
             <Image
-              src={images[1]}
+              src={images[1].image_file}
               alt="uploaded image"
               fill={true}
               sizes="50%"
@@ -90,7 +92,7 @@ const Post = ({
         <div className={imageClass} css={imageArea}>
           <div>
             <Image
-              src={images[0]}
+              src={images[0].image_file}
               alt="uploaded image"
               fill={true}
               sizes="100%"

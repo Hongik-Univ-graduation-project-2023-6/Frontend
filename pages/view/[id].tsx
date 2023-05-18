@@ -1,116 +1,62 @@
 import { css } from '@emotion/react';
-import Image from 'next/image';
+import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
+import { boardRequest } from '@/api/axios';
 import Header from '@/components/Header';
-import Text from '@/components/Text';
-import Comment from '@/public/assets/svg/comment.svg';
-import Profile from '@/public/assets/svg/profile.svg';
-import { colors } from '@/styles/colors';
+import {
+  COMMENT_INPUT_HEIGHT,
+  HEADER_HEIGHT,
+  SIDE_PADDING,
+} from '@/constants/layout';
+import { IDetailPost } from '@/types/board';
+import CommentInput from './components/CommentInput';
+import CommentViewer from './components/CommentViewer';
+import PostViewer from './components/PostViewer';
 
-const DATA = {
-  id: '1',
-  userName: '익명',
-  date: '01/01',
-  title: '샘플 제목입니다',
-  content: '샘플 텍스트입니다.',
-  like: 4,
-  scrape: 2,
-  images: ['https://picsum.photos/seed/1000/500/500'],
-};
+interface Props {
+  data: IDetailPost;
+}
 
-const ViewPage = () => {
+const ViewPage = ({ data }: Props) => {
+  const router = useRouter();
+
+  const handleReload = () => {
+    router.reload();
+  };
+
   return (
     <div css={layout}>
       <Header showPrevButton={true} />
-      <div css={topArea}>
-        <Profile />
-        <div>
-          <Text weight="bold" size="sm">
-            {DATA.userName}
-          </Text>
-          <Text weight="regular" size="xs">
-            {DATA.date}
-          </Text>
-        </div>
-      </div>
-      <div css={contentArea}>
-        <Text weight="bold" size="md">
-          {DATA.title}
-        </Text>
-        <Text weight="regular" size="sm">
-          {DATA.content}
-        </Text>
-      </div>
-      {DATA.images && (
-        <div css={imageArea}>
-          <Image src={DATA.images[0]} alt="uploaded image" fill={true} />
-        </div>
-      )}
-      <div css={bottomArea}>
-        <div className="bottomIcon">
-          <Comment />
-          <Text weight="bold" size="xs">
-            {DATA.scrape}
-          </Text>
-        </div>
-      </div>
+      <PostViewer
+        title={data.title}
+        content={data.content}
+        username={data.username}
+        date={data.created_at}
+        commentCount={data.comments_count}
+        images={data.post_images}
+      />
+      <CommentViewer commentList={data.post_comments} />
+      <CommentInput postId={data.id} onReload={handleReload} />
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.query;
+  const res = await boardRequest({
+    method: 'get',
+    url: `post/${id}`,
+  });
+  const data = res.data;
+
+  return { props: { data } };
 };
 
 const layout = css`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 3rem 1rem;
-`;
-
-const topArea = css`
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-
-  & > p:first-of-type {
-    color: ${colors.black};
-  }
-
-  & > p:last-of-type {
-    color: ${colors.graytext2};
-  }
-`;
-
-const contentArea = css`
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: 1.25rem;
-
-  & > p:first-of-type {
-    color: ${colors.black};
-  }
-
-  & > p:last-of-type {
-    color: ${colors.graytext3};
-  }
-`;
-
-const imageArea = css`
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 14.5rem;
-  margin-bottom: 0.5rem;
-`;
-
-const bottomArea = css`
-  display: flex;
-  gap: 1.5rem;
-  color: ${colors.graytext2};
-
-  div.bottomIcon {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
+  padding: ${HEADER_HEIGHT} ${SIDE_PADDING} ${COMMENT_INPUT_HEIGHT};
 `;
 
 export default ViewPage;
