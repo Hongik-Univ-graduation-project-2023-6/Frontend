@@ -118,7 +118,7 @@ const wrapper = css`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0.75rem 1.5rem 1.5rem;
+  padding: 0.75rem 0 1.5rem;
   border-bottom: 1px solid ${colors.grayline1};
   z-index: 0;
 `;
@@ -168,11 +168,6 @@ const bottomArea = css`
     display: flex;
     align-items: center;
     gap: 0.25rem;
-
-    svg {
-      /* width: 0.75rem; */
-      /* height: 0.75rem; */
-    }
   }
 `;
 

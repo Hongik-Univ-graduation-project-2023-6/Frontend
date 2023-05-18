@@ -4,7 +4,7 @@ import { boardRequest } from '../axios';
 export const postComment = async (payload: IPostComment) => {
   const res = await boardRequest({
     method: 'post',
-    url: 'comment/',
+    url: '/comment/',
     data: payload,
   });
 
@@ -14,7 +14,7 @@ export const postComment = async (payload: IPostComment) => {
 export const postPost = async (payload: FormData) => {
   const res = await boardRequest({
     method: 'post',
-    url: 'post/',
+    url: '/post/',
     headers: {
       'Content-Type': 'multipart/form-data',
     },
