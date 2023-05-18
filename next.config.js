@@ -4,7 +4,7 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
-
+// "https://gp6-community.s3.ap-northeast-2.amazonaws.com/
 module.exports = withBundleAnalyzer({
   compress: true,
   reactStrictMode: true,
@@ -16,6 +16,12 @@ module.exports = withBundleAnalyzer({
         hostname: 'picsum.photos',
         port: '',
         pathname: '/seed/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'gp6-community.s3.ap-northeast-2.amazonaws.com',
+        port: '',
+        pathname: '/images/**',
       },
     ],
   },
@@ -34,48 +40,3 @@ module.exports = withBundleAnalyzer({
     };
   },
 });
-
-/*
-module.exports = withBundleAnalyzer({
-    compress: true,
-    webpack(config, {webpack}){
-        const prod = process.env.NODE_ENV === 'production';
-        const plugins = [...config.plugins];
-        return{
-            ...config,
-            mode: prod ? 'producton' : 'development',
-            devtool: prod ? 'hidden-source-map' : 'eval',
-            plugins,
-        };
-    },
-});
-
-
-*/
-
-// console.log(isProd);
-// console.log(withBundleAnalyzer);
-
-// const nextConfig = {
-//   reactStrictMode: true,
-//   images: {
-//     formats: ['image/webp'],
-//     remotePatterns: [
-//       {
-//         protocol: 'https',
-//         hostname: 'picsum.photos',
-//         port: '',
-//         pathname: '/seed/**',
-//       },
-//     ],
-//   },
-//   webpack: (config) => {
-//     config.module.rules.push({
-//       test: /\.svg$/,
-//       use: ['@svgr/webpack'],
-//     });
-//     return config;
-//   },
-// };
-
-// module.exports = nextConfig;

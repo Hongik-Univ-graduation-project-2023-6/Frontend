@@ -13,7 +13,7 @@ const WritePage = () => {
       <Header />
       <Editor
         onCancelButtonClick={() => router.push(PATH.MAIN)}
-        onSubmitButtomClick={() => null}
+        onSubmitSuccess={() => router.push(PATH.MAIN)}
       />
     </div>
   );
