@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
   const res = await boardRequest({
     method: 'get',
-    url: `post/${id}`,
+    url: `/post/${id}`,
   });
   const data = res.data;
 

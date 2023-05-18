@@ -55,7 +55,7 @@ const MainPage = ({ data }: Props) => {
 export const getServerSideProps = async () => {
   const res = await boardRequest<IGetPost>({
     method: 'get',
-    url: 'post/',
+    url: '/post/',
   });
   const data = res.data.results;
 
