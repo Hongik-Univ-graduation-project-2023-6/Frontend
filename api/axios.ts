@@ -1,7 +1,8 @@
-import axios, { AxiosResponse, CancelToken } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, CancelToken } from 'axios';
 import { IDiagnosisResponse } from '@/types/api';
 
 const AI_BASE_URL = process.env.NEXT_PUBLIC_AI_SERVER_URL;
+const BOARD_BASE_URL = process.env.NEXT_PUBLIC_BOARD_SERVER_URL;
 
 const aiRequest = async (
   data: FormData,
@@ -19,4 +20,11 @@ const aiRequest = async (
   }).then((res: AxiosResponse) => res.data?.results);
 };
 
-export { aiRequest };
+const boardRequest = async <T>(param: AxiosRequestConfig) => {
+  return axios({
+    baseURL: BOARD_BASE_URL,
+    ...param,
+  }).then((res: AxiosResponse<T>) => res);
+};
+
+export { aiRequest, boardRequest };
