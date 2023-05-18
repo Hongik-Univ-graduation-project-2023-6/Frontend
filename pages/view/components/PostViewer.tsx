@@ -45,17 +45,18 @@ const PostViewer = ({
         </Text>
       </ContentArea>
       <ImageArea>
-        {images.map((image) => (
-          <div key={image.id}>
-            <Image
-              src={image.image_file}
-              alt="uploaded image"
-              width="100"
-              height="100"
-              style={{ width: '100%', height: 'auto' }}
-            />
-          </div>
-        ))}
+        {images &&
+          images.map((image) => (
+            <div key={image.id}>
+              <Image
+                src={image.image_file}
+                alt="uploaded image"
+                width="100"
+                height="100"
+                style={{ width: '100%', height: 'auto' }}
+              />
+            </div>
+          ))}
       </ImageArea>
       <CommentInfoArea>
         <Comment />

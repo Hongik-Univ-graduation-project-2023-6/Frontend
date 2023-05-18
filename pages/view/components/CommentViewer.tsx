@@ -12,22 +12,23 @@ interface Props {
 const CommentViewer = ({ commentList }: Props) => {
   return (
     <ViewerWrap>
-      {commentList.map((comment) => (
-        <Comment key={comment.id}>
-          <UserInfoArea>
-            <Profile />
-            <Text weight="bold" size="md">
-              @{comment.username}
+      {commentList &&
+        commentList.map((comment) => (
+          <Comment key={comment.id}>
+            <UserInfoArea>
+              <Profile />
+              <Text weight="bold" size="md">
+                @{comment.username}
+              </Text>
+            </UserInfoArea>
+            <Text weight="regular" size="md">
+              {comment.content}
             </Text>
-          </UserInfoArea>
-          <Text weight="regular" size="md">
-            {comment.content}
-          </Text>
-          <Text weight="regular" size="sm">
-            {dayjs(comment.created_at).format('MM/DD HH:mm')}
-          </Text>
-        </Comment>
-      ))}
+            <Text weight="regular" size="sm">
+              {dayjs(comment.created_at).format('MM/DD HH:mm')}
+            </Text>
+          </Comment>
+        ))}
     </ViewerWrap>
   );
 };
