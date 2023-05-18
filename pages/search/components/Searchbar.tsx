@@ -1,20 +1,47 @@
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
+import { SetStateAction, useRef, useState } from 'react';
 import Text from '@/components/Text';
 import Search from '@/public/assets/svg/search.svg';
 import { colors } from '@/styles/colors';
 
-const Searchbar = () => {
+interface Props {
+  setSearchValue: React.Dispatch<SetStateAction<string>>;
+}
+
+const Searchbar = ({ setSearchValue }: Props) => {
+  const [value, setValue] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
   const handleCancelButtonClick = () => {
     router.back();
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.nativeEvent.isComposing) return;
+    if (event.key === 'Enter') {
+      setSearchValue(value);
+      inputRef.current?.blur();
+    }
   };
 
   return (
     <div css={wrapper}>
       <div css={inputArea}>
         <Search />
-        <input type="text" placeholder="글 제목, 내용" />
+        <input
+          type="text"
+          placeholder="글 제목, 내용"
+          value={value}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          ref={inputRef}
+        />
       </div>
       <Text weight="bold" size="md" onClick={handleCancelButtonClick}>
         취소
