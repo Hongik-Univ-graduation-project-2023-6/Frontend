@@ -43,13 +43,20 @@ const ViewPage = ({ data }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
-  const res = await boardRequest({
-    method: 'get',
-    url: `/post/${id}`,
-  });
-  const data = res.data;
 
-  return { props: { data } };
+  try {
+    const res = await boardRequest({
+      method: 'get',
+      url: `/post/${id}`,
+    });
+    const data = res.data;
+
+    return { props: { data } };
+  } catch (error) {
+    console.error(error);
+
+    return { props: {} };
+  }
 };
 
 const layout = css`

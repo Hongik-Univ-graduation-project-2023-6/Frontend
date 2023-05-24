@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
 import { boardRequest } from '@/api/axios';
+import { getNextPost } from '@/api/board';
 import BottomNaviagtion from '@/components/BottomNavigation';
 import Button from '@/components/Button';
 import Header from '@/components/Header';
@@ -14,33 +16,70 @@ import Pencil from '@/public/assets/svg/pencil.svg';
 import { IGetPost } from '@/types/api';
 import { IPost } from '@/types/board';
 import Post from './components/Post';
+import { getPageNumber } from '../../utils/getPageNumber';
 
 interface Props {
   data: IPost[];
+  nextPageNumber: string | null;
 }
 
-const MainPage = ({ data }: Props) => {
+const MainPage = ({ data, nextPageNumber }: Props) => {
+  const [postList, setPostList] = useState<IPost[]>([]);
+  const nextPageNumberRef = useRef(nextPageNumber);
+  const divref = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   const handleWriteButtonClick = () => {
     router.push(PATH.WRITE);
   };
 
+  useEffect(() => {
+    setPostList([...data]);
+  }, [data]);
+
+  useEffect(() => {
+    const endpointRef = divref.current;
+    if (!endpointRef) return;
+
+    const observer = new IntersectionObserver(
+      async (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && nextPageNumberRef.current) {
+          const nextData = await getNextPost(nextPageNumberRef.current);
+          nextPageNumberRef.current = nextData.next
+            ? getPageNumber(nextData.next)[0]
+            : null;
+          setPostList((prev) => [...prev, ...nextData.results]);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(endpointRef);
+
+    return () => {
+      observer.unobserve(endpointRef);
+    };
+  }, []);
+
   return (
     <div css={layout}>
       <Header showSearchButton={true} />
-      {data.map((post) => (
-        <Post
-          key={post.id}
-          id={post.id}
-          userName={post.username}
-          date={post.created_at}
-          title={post.title}
-          content={post.content}
-          commentCount={post.comments_count}
-          images={post.post_images}
-        />
-      ))}
+      <div className="dd">
+        {postList.map((post) => (
+          <Post
+            key={post.id}
+            id={post.id}
+            userName={post.username}
+            date={post.created_at}
+            title={post.title}
+            content={post.content}
+            commentCount={post.comments_count}
+            images={post.post_images}
+          />
+        ))}
+        <div ref={divref} />
+      </div>
       <Button
         type="button"
         label="글쓰기"
@@ -53,13 +92,22 @@ const MainPage = ({ data }: Props) => {
 };
 
 export const getServerSideProps = async () => {
-  const res = await boardRequest<IGetPost>({
-    method: 'get',
-    url: '/post/',
-  });
-  const data = res.data.results;
+  try {
+    const res = await boardRequest<IGetPost>({
+      method: 'get',
+      url: '/post/',
+    });
+    const data = res.data.results;
+    const nextPageNumber = res.data.next
+      ? getPageNumber(res.data.next)[0]
+      : null;
 
-  return { props: { data } };
+    return { props: { data, nextPageNumber } };
+  } catch (error) {
+    console.error(error);
+
+    return { props: {} };
+  }
 };
 
 const layout = css`
