@@ -26,6 +26,7 @@ const SearchPage = () => {
         ? getPageNumber(result.next)[0]
         : null;
       setPostList([...result.results]);
+      window.scrollTo({ top: 0 });
     };
 
     showSearchedPost();
