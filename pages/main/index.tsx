@@ -53,13 +53,19 @@ const MainPage = ({ data }: Props) => {
 };
 
 export const getServerSideProps = async () => {
-  const res = await boardRequest<IGetPost>({
-    method: 'get',
-    url: '/post/',
-  });
-  const data = res.data.results;
+  try {
+    const res = await boardRequest<IGetPost>({
+      method: 'get',
+      url: '/post/',
+    });
+    const data = res.data.results;
 
-  return { props: { data } };
+    return { props: { data } };
+  } catch (error) {
+    console.error(error);
+
+    return { props: {} };
+  }
 };
 
 const layout = css`
