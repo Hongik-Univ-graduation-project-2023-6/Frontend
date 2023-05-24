@@ -102,7 +102,7 @@ const ImageFileForm = () => {
             onChange={fileInputChange}
           />
           {thumbnailSrc ? (
-            <>
+            <div css={selectArea}>
               <Image
                 src={thumbnailSrc}
                 width={200}
@@ -116,7 +116,7 @@ const ImageFileForm = () => {
                 onClick={handleUploadButtonClick}
                 icon={<Picture />}
               />
-            </>
+            </div>
           ) : (
             <Button
               type="button"
@@ -143,6 +143,23 @@ const formArea = css`
   align-items: center;
   gap: 0.5rem;
   width: 100%;
+
+  & > button {
+    width: 80%;
+    height: 2.75rem;
+  }
+`;
+
+const selectArea = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+
+  & > img {
+    margin-bottom: 1rem;
+  }
 
   & > button {
     width: 80%;

@@ -36,9 +36,8 @@ const layout = css`
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  min-height: 100vh;
   padding: ${HEADER_HEIGHT} ${SIDE_PADDING}
-    calc(${BOTTOM_NAVIGATION_HEIGHT} + 1rem);
+    calc(${BOTTOM_NAVIGATION_HEIGHT} + 2rem);
 `;
 
 const textArea = css`
