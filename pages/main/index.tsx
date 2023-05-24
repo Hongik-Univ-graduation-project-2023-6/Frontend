@@ -16,7 +16,7 @@ import Pencil from '@/public/assets/svg/pencil.svg';
 import { IGetPost } from '@/types/api';
 import { IPost } from '@/types/board';
 import Post from './components/Post';
-import { getPageNumber } from './utils/getPageNumber';
+import { getPageNumber } from '../../utils/getPageNumber';
 
 interface Props {
   data: IPost[];
