@@ -26,7 +26,7 @@ interface Props {
 const MainPage = ({ data, nextPageNumber }: Props) => {
   const [postList, setPostList] = useState<IPost[]>([]);
   const nextPageNumberRef = useRef(nextPageNumber);
-  const divref = useRef<HTMLDivElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   const handleWriteButtonClick = () => {
@@ -38,14 +38,16 @@ const MainPage = ({ data, nextPageNumber }: Props) => {
   }, [data]);
 
   useEffect(() => {
-    const endpointRef = divref.current;
+    const endpointRef = divRef.current;
     if (!endpointRef) return;
 
     const observer = new IntersectionObserver(
       async (entries) => {
         const [entry] = entries;
+
         if (entry.isIntersecting && nextPageNumberRef.current) {
           const nextData = await getNextPost(nextPageNumberRef.current);
+
           nextPageNumberRef.current = nextData.next
             ? getPageNumber(nextData.next)[0]
             : null;
@@ -65,7 +67,7 @@ const MainPage = ({ data, nextPageNumber }: Props) => {
   return (
     <div css={layout}>
       <Header showSearchButton={true} />
-      <div className="dd">
+      <div>
         {postList.map((post) => (
           <Post
             key={post.id}
@@ -78,7 +80,7 @@ const MainPage = ({ data, nextPageNumber }: Props) => {
             images={post.post_images}
           />
         ))}
-        <div ref={divref} />
+        <div ref={divRef} />
       </div>
       <Button
         type="button"

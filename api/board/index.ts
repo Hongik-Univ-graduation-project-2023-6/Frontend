@@ -47,3 +47,19 @@ export const getNextPost = async (pageNumber: string) => {
 
   return res.data;
 };
+
+export const getSearchedNextPost = async (
+  search: string,
+  pageNumber: string,
+) => {
+  const res = await boardRequest<IGetPost>({
+    method: 'get',
+    url: '/post/',
+    params: {
+      search,
+      page: pageNumber,
+    },
+  });
+
+  return res.data;
+};
